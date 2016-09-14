@@ -11,9 +11,6 @@
 
 ### Manual installation
 
-
-#### Android
-
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
   - Add `import com.ga2mer.seekbar.RNAndroidSeekbarPackage;` to the imports at the top of the file
   - Add `new RNAndroidSeekbarPackage()` to the list returned by the `getPackages()` method
@@ -30,9 +27,8 @@
 
 ## Usage
 ```javascript
-import RNAndroidSeekbar from 'react-native-android-seekbar';
-
-// TODO: What do with the module?
-RNAndroidSeekbar;
+import SeekBar from 'react-native-android-seekbar';
+<SeekBar style={{
+    width: 300
+}} color={'#e62117'} progress={50} onChange={this.handleChange} onTrackingTouch={this.handleTrackingTouch} max={100} secondaryColor={'grey'} thumbColor={'#e62117'} bgColor={'rgba(0, 0, 0, 0.5)'}/>
 ```
-  
