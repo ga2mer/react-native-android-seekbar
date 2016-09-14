@@ -7,7 +7,7 @@
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-android-seekbar
+`$ react-native link react-native-android-seekbar`
 
 ### Manual installation
 
