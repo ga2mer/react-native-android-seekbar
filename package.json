@@ -1,7 +1,7 @@
 
 {
-  "name": "android-seekbar",
-  "version": "1.0.0",
+  "name": "react-native-android-seekbar",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
