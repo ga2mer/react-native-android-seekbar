@@ -5,9 +5,8 @@ import NativeMethodsMixin from 'react/lib/NativeMethodsMixin';
 import ReactPropTypes from 'react/lib/ReactPropTypes';
 import View from 'View';
 import ColorPropType from 'ColorPropType';
-var STYLE_ATTRIBUTES = [
-    'Normal'
-];
+import shallowCompare from 'react-addons-shallow-compare';
+var STYLE_ATTRIBUTES = ['Normal'];
 import requireNativeComponent from 'requireNativeComponent';
 class SeekBar extends Component {
     static propTypes = {
@@ -34,6 +33,7 @@ class SeekBar extends Component {
     };
     _assignRoot = (component) => {
         this._root = component;
+        //console.log(Object.keys(component));
     }
     _onChange = (event) => {
         if (this.props.onChange) {
@@ -45,6 +45,15 @@ class SeekBar extends Component {
             this.props.onTrackingTouch(event.nativeEvent.pressed);
         }
     }
+    setNativeProps(nativeProps) {
+        this._root.setNativeProps(nativeProps);
+    }
+    setProgress = (progress) => {
+        this.setNativeProps({progress: Math.round(progress)});
+    };
+    shouldComponentUpdate(nextProps, nextState) {
+        return shallowCompare(this, nextProps, nextState);
+    }
     render() {
         const nativeProps = Object.assign(SeekBar.defaultProps, this.props);
         return <AndroidSeekBar ref={this._assignRoot} {...nativeProps} onTrackingTouch={this._onTrackingTouch} onChange={this._onChange}/>
@@ -52,7 +61,8 @@ class SeekBar extends Component {
 }
 var AndroidSeekBar = requireNativeComponent('RNSeekBar', SeekBar, {
     nativeOnly: {
-        onChange: true
+        onChange: true,
+        progress: true
     }
 });
 export default SeekBar;
